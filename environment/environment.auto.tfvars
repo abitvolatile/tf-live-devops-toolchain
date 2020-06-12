@@ -23,6 +23,14 @@ google_region = {
   multi  = "US"
 }
 
+kube_cluster_prefix         = "gke-devops"
+kube_cluster_version        = "1.15"
+kube_nodepool_disk_size     = "50"
+kube_nodepool_instance_type = "n1-standard-2"
+
 shared_image_project = "shared-ops"
+
+jenkins_instance_type  = "n1-standard-1"
+jenkins_data_disk_size = "10"
 
 helm_chart_version = ""

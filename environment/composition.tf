@@ -76,7 +76,13 @@ variable "google_project_base" {}
 variable "skip_delete" {}
 variable "metadata" {}
 variable "google_region" {}
+variable "kube_cluster_prefix" {}
+variable "kube_cluster_version" {}
+variable "kube_nodepool_disk_size" {}
+variable "kube_nodepool_instance_type" {}
 variable "shared_image_project" {}
+variable "jenkins_instance_type" {}
+variable "jenkins_data_disk_size" {}
 variable "helm_chart_version" {}
 
 
@@ -121,6 +127,8 @@ module "jenkins" {
   google_region          = var.google_region
   local_public_ip        = module.public_ip.public_ip
   shared_image_project   = var.shared_image_project
+  jenkins_instance_type  = var.jenkins_instance_type
+  jenkins_data_disk_size = var.jenkins_data_disk_size
 }
 
 
@@ -128,10 +136,14 @@ module "gke" {
   source  = "app.terraform.io/abitvolatile/gke/gcp"
   version = "~> 1.0"
 
-  google_project_name    = local.google_project_name
-  google_compute_network = module.vpc_networking.google_compute_network_name
-  google_region          = var.google_region
-  local_public_ip        = module.public_ip.public_ip
+  google_project_name         = local.google_project_name
+  google_compute_network      = module.vpc_networking.google_compute_network_name
+  google_region               = var.google_region
+  local_public_ip             = module.public_ip.public_ip
+  kube_cluster_prefix         = var.kube_cluster_prefix
+  kube_cluster_version        = var.kube_cluster_version
+  kube_nodepool_disk_size     = var.kube_nodepool_disk_size
+  kube_nodepool_instance_type = var.kube_nodepool_instance_type
 }
 
 
