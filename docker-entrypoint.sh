@@ -6,6 +6,10 @@ VAR_ARRAY=(
   "TF_VAR_google_project_base" 
   "UID_STRING")
 
+BASE_DIR="/terraform-module"
+MODULE_DIR="environment"
+PROJECT_DIR="${BASE_DIR}/${MODULE_DIR}"
+
 
 
 # Exiting if ANY Error/Failure occurs
@@ -19,21 +23,13 @@ echo "${GOOGLE_CLOUD_KEYFILE_JSON}" > /home/alpine/.service_account.json
 echo "${TERRAFORM_CREDENTIALS}" > /home/alpine/.terraformrc
 
 
-# Packer Build
-#echo
-#echo "Now Performing Packer Build of Machine Image(s)"
-#cd /terraform-module/packer
-#hcltool ../examples/example.auto.tfvars | jq -r "{ project_id: .shared_image_project, image_zone: .google_region.single}" > /tmp/vars.json
-#packer build -var-file=/tmp/vars.json packer.json
-
-
 # Load Function Script
-cd /terraform-module/
-source ./functions.sh 
+cd $BASE_DIR
+source ./functions.sh
 
 
 # Prepare Terraform Composition
-cd /terraform-module/examples/
+cd $PROJECT_DIR
 tfenv install
 
 
@@ -52,10 +48,24 @@ echo "Now Performing Terraform Init (Initialization of Backend and Provider Plug
 tf_init "$BUCKET_NAME" "live/${TF_VAR_google_project_base}-${UID_STRING}"
 
 
+
+# Packer Build
+echo
+echo "Now Performing Packer Build of Machine Image(s)"
+packer_build "$PROJECT_DIR/.terraform/modules/jenkins/packer/" "$PROJECT_DIR/environment.auto.tfvars"
+
+
+
+# Change to Base Directory
+cd $PROJECT_DIR
+
+
 echo
 echo "Now Performing Terraform Validate (Validate/Lint)"
 tf_validate
 tf_fmt
+
+
 
 
 echo

@@ -86,3 +86,13 @@ tf_destroy() {
       exit 1
     fi
 }
+
+packer_build() {
+    cd $1
+    hcltool $2 | jq -r "{ project_id: .shared_image_project, image_zone: .google_region.single}" > /tmp/vars.json
+    packer build -var-file=/tmp/vars.json packer.json
+    if [ $? -ne 0 ]
+    then
+      exit 1
+    fi
+}
