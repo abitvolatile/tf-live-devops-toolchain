@@ -154,12 +154,12 @@ module "spinnaker" {
   source  = "app.terraform.io/abitvolatile/spinnaker/helm"
   version = "~> 1.0"
 
-  google_project_name        = local.google_project_name
-  helm_chart_version         = var.helm_chart_version
   k8s_access_token           = module.gke.google_service_account_access_token
   k8s_cluster_ca_certificate = module.gke.kubernetes_cluster_ca_certificate
   k8s_cluster_endpoint       = module.gke.kubernetes_cluster_endpoint
   k8s_nodepool_name          = module.gke.kubernetes_nodepool_a_name
+  helm_chart_version         = var.helm_chart_version
+  google_project_name        = local.google_project_name
 }
 
 
@@ -167,11 +167,11 @@ module "prometheus" {
   source  = "app.terraform.io/abitvolatile/prometheus/helm"
   version = "~> 1.0"
 
-  helm_chart_version         = var.prometheus_helm_chart_version
-  grafana_adminuser          = var.grafana_adminuser
-  grafana_adminpassword      = var.grafana_adminpassword
   k8s_access_token           = module.gke.google_service_account_access_token
   k8s_cluster_ca_certificate = module.gke.kubernetes_cluster_ca_certificate
   k8s_cluster_endpoint       = module.gke.kubernetes_cluster_endpoint
   k8s_nodepool_name          = module.gke.kubernetes_nodepool_a_name
+  helm_chart_version         = var.prometheus_helm_chart_version
+  grafana_adminuser          = var.grafana_adminuser
+  grafana_adminpassword      = var.grafana_adminpassword
 }
