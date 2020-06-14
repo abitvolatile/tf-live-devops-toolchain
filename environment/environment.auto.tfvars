@@ -34,3 +34,7 @@ jenkins_instance_type  = "n1-standard-1"
 jenkins_data_disk_size = "10"
 
 helm_chart_version = ""
+
+prometheus_helm_chart_version = ""
+grafana_adminuser             = "Grafana-Admin"
+grafana_adminpassword         = "T31emetry!"

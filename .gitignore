@@ -1,2 +1,4 @@
 .terraform
 .terraformrc
+*.pem
+packer/vars.json
