@@ -51,7 +51,6 @@ Terraform for Reusable Infrastructure-as-Code Composition and Resource Modules:
 ## Getting Started
 
 ### Prerequisites
-<br>
 
 **Binaries**
 * Install Git binary on local system
@@ -82,7 +81,6 @@ Terraform for Reusable Infrastructure-as-Code Composition and Resource Modules:
 
 
 ### Steps
-<br>
 
 #### Build Deployment Container Image
 ```
@@ -112,7 +110,7 @@ docker run -ti --entrypoint='' \
   deployment:latest bash
 ```
 
-#### Start Deployment
+#### Perform Deployment
 ```
 source /terrform-module/functions.sh
 /docker-entrypoint.sh
