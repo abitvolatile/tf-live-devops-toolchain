@@ -5,9 +5,9 @@ A collection of repositories for deploying what some might call a "Modern DevOps
 ## Project Overview 
 
 #### Google Cloud Resources:
-* Project, Service APIs, Service Accounts, IAM Role Bindings, GCS Bucket
+* Project, Service APIs, Service Accounts and IAM Role Bindings
 * VPC-Network, Subnets, Firewall Rules, Load Balancers and Healthchecks
-* GCE (Virtual Machine) Instance-Group, Instance Template and Managed Disks 
+* GCE (Virtual Machine) Instance-Group, Instance Template and Managed Disks
 * GKE (Managed Kubernetes) Cluster and NodePool
 <br><br><br>
 
@@ -27,16 +27,16 @@ A collection of repositories for deploying what some might call a "Modern DevOps
 
 
 ## Technology Overview
-Github for Repositories and CI Workflows: 
+Github for Repository and CI Workflows: 
 * Each repo has an associated Github Actions Workflow (declarative file)
-* The workflow builds the Docker container image containing all tools/dependencies used for performing ANY build or releases operations
+* The workflow builds the Docker container image containing all tools/dependencies used for performing ANY build or release operations
 * All configurations are sourced externally and passed to the container environment runtime allowing for a ubiquitous image to be used across functions & environments
-* Build and Release Pipeline concurrency on the same agent hosts is possible due to isolation of environment runtime properties (processes, configs, variables, etc..)
-* The same runtime environment (OS kernel, binaries, file-system, packages) used to deploy dev is the same image used for deploying production
+* Build and release pipeline concurrency on the same agent host is possible due to isolation of environment runtime properties (processes, configs, variables, etc..)
+* The same image (OS kernel, binaries, file-system, packages) used to deploy dev is the same image used for deploying production
 <br>
 
 Packer for Machine Image Templating:
-* Builds a CentOS machine image with the Docker-CE packages and the OS updates pre-installed along with any necessary OS configurations (ie. Init Manager) using HashiCorp Packer
+* Builds a CentOS virtual machine image with all OS patches and Docker-CE pre-installed along with any necessary OS configurations (ie. Init Manager) using HashiCorp Packer
 <br>
 
 Terraform for Reusable Infrastructure-as-Code Composition and Resource Modules:
