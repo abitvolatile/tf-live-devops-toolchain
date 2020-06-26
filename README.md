@@ -20,9 +20,9 @@ A collection of repositories for deploying what some might call a "Modern DevOps
     * Prometheus (Prometheus TSDB component)
     * AlertManager (Prometheus alerting component)
     * Kube-State-Metrics (Collects resource state from Kubernetes API and provides data as metrics)
-    * Prometheus-Node-Exporter (Collects basic metrics from the underlying OS on nodes)
-    * Grafana (Visualization Graphing Tool)
-  * [cAdvisor](https://github.com/google/cadvisor) (Collects metrics for container workloads from kubelets)
+    * Prometheus-Node-Exporter (Collects basic metrics from the underlying nodes operating system)
+    * Grafana (Visualization Dashboard and Graphing Tool)
+  * [cAdvisor](https://github.com/google/cadvisor) (Collects the resource usage metrics of containers)
 <br><br><br>
 
 
