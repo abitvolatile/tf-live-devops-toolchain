@@ -82,12 +82,12 @@ Terraform for Reusable Infrastructure-as-Code Composition and Resource Modules:
 
 ### Steps
 
-#### Build Deployment Container Image
+#### Build Container Image
 ```
 docker build -t deployment:latest .
 ```
 
-#### Start Deployment Container
+#### Start Container
 ```
 export BUCKET_NAME="<some-bucket-name-here>"
 export TF_VAR_google_billing_account='######-######-######'
@@ -110,8 +110,13 @@ docker run -ti --entrypoint='' \
   deployment:latest bash
 ```
 
-#### Perform Deployment
+#### Provision Resources
 ```
-source /terrform-module/functions.sh
+source /terraform-module/functions.sh
 /docker-entrypoint.sh
+```
+
+#### Cleaning Up Resources
+```
+tf_destroy
 ```
