@@ -12,8 +12,8 @@ terraform {
   }
   required_version = "= 0.12.24"
   required_providers {
-    google      = "= 2.14"
-    google-beta = "= 2.14"
+    google      = "= 2.20"
+    google-beta = "= 2.20"
     random      = "~> 2.2"
     http        = ">= 1.1.1"
     kubernetes  = "= 1.11.2"
